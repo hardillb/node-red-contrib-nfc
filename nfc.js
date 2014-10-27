@@ -35,8 +35,6 @@ function NFCNode(n) {
 		node.log("foo");
 	}
 
-	node.log(this.n);
-
     this.n.on('read', function(tag){
     	if (node.uid) {
     		if (node.uid == tag.uid) {
