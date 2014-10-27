@@ -39,7 +39,9 @@ function NFCNode(n) {
     	if (node.uid) {
     		if (node.uid == tag.uid) {
     			return;
-    		}
+    		} else {
+                node.uid = tag.uid;
+            }
     	} else {
     		node.uid = tag.uid;
     		node.timer = setTimeout(function(){
@@ -53,6 +55,9 @@ function NFCNode(n) {
     	if (node.topic) {
     		msg.topic = node.topic;
     	}
+        // if (tag.data && tag.offset) {
+        //     var ndef = nfc.parse(tag.data.slice(tag.offset));
+        // }
     	msg.payload = tag;
     	node.send(msg);
     });
