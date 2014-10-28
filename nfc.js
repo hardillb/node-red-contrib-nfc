@@ -19,6 +19,7 @@
 module.exports = function(RED) {
 
 var nfc = require('nfc').nfc;
+//var ndef   = require('ndef')
 
 
 // The main node definition - most things happen in here
@@ -86,7 +87,71 @@ function NFCNode(n) {
 			node.error(err);
 		}
    });
-}
+};
 
 RED.nodes.registerType("nfc",NFCNode);
+
+// function NDEFNode(n) {
+//     RED.nodes.createNode(this,n);
+//     this.name = n.name;
+//     this.topic = n.topic;
+
+//     var node = this;
+//     this.on('input', function(msg){
+//         if (msg.payload.data && msg.payload.offset) {
+//             var data = msg.payload.data.slice(msg.payload.offset);
+//             var results = [];
+
+//             var messages = ndef.decodeMessage(data.toJSON());
+
+//             messages.forEach(function(record){
+//                 console.log(record);
+//                 if (record.type[0] === ndef.RTD_TEXT[0]) {
+//                     console.log(ndef.text.decodePayload(record.type));
+//                 } else if (record.type[0] === ndef.RTD_URI[0]) {
+//                     console.log(ndef.uri.decodePayload(record.type.slice(1)));
+//                 }
+//             });
+
+//             // for (i = 0, bytes = data.toJSON(); i < bytes.length; i += tlv.len) {
+//             //     tlv = { type: bytes[i++] };
+//             //     if ((tlv.type === 0xfe) || (i >= bytes.length)) {
+//             //         results.push(tlv);
+//             //         break;
+//             //     }
+//             //     tlv.len = bytes[i++];
+//             //     if (tlv.len === 0xff) {
+//             //         if ((i + 1) >= bytes.length) {
+//             //             break;
+//             //         }
+//             //         tlv.len = bytes[i++] << 8;
+//             //         tlv.len += bytes[i++];
+//             //     }
+//             //     if ((tlv.len > 0) && ((i + tlv.len) < bytes.length)) {
+//             //         tlv.value = bytes.slice(i, i + tlv.len);
+//             //     } else {
+//             //         console.log(tlv.type + " - "+ tlv.len + " - " + (i + tlv.len) + " - " + bytes.length);
+//             //     }
+//             //     if ((tlv.type === 0x03) && (!!tlv.value)) {
+//             //         tlv.ndef = ndef.decodeMessage(tlv.value);
+//             //     }
+//             //     if (!!tlv.value) {
+//             //         tlv.value = ndef.util.bytesToHexString(tlv.value);
+//             //     }
+//             //     results.push(tlv);
+//             // }
+
+//             msg.payload = results;
+//             if (node.topic) {
+//                 msg.topic = node.topic;
+//             }
+//             node.send(msg);
+//         }
+//     });
+
+// };
+
+// RED.nodes.registerType("ndef", NDEFNode);
+
 }
+
