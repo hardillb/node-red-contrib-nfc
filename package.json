@@ -3,9 +3,9 @@
     "version"      : "0.0.1",
     "description"  : "A NFC node for Node-RED",
     "dependencies": {
-        nfc: "https://github.com/hardillb/node-nfc/archive/master.tar.gz"
+        "nfc": "https://github.com/hardillb/node-nfc/archive/master.tar.gz"
     },
-    license: "Apache",
+    "license": "Apache",
     "repository" : {
         "type":"git",
         "url":"https://github.com/hardillb/node-red-contrib-nfc.git"
